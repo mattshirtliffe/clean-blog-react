@@ -11,7 +11,7 @@ class Layout extends Component {
   render() {
     return (
       <div className="Layout" >
-        <NavBar brand={"Blog Name"} />
+        <NavBar brand={"Blog Name"} navbarItems={["menuItem1","menuItem2","menuItem3"]} />
       </div >
     );
   }

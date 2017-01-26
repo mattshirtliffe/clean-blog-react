@@ -1,30 +1,37 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-import './theme/css/clean-blog.css';
-import './theme/vendor/bootstrap/css/bootstrap.css';
-import './theme/vendor/font-awesome/css/font-awesome.css';
+
+
+class NavbarMenuItem extends Component {
+
+    render() {
+        return (
+          <li>
+              <a href="index.html">{this.props.navbarItem}</a>
+          </li>
+        );
+    }
+}
+
+class NavbarMenuItems extends Component {
+
+    render() {
+        var navbarItems = this.props.navbarItems.map(function(name,index) {
+          console.log(name);
+            return <NavbarMenuItem key={index} navbarItem={name}/>;
+        });
+        return( <ul className="nav navbar-nav navbar-right">
+            {navbarItems}
+        </ul>);
+    }
+}
 
 class NavbarMenu extends Component {
   render() {
     return (
       <div className="NavbarMenu" >
         <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul className="nav navbar-nav navbar-right">
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>
-                    <a href="about.html">About</a>
-                </li>
-                <li>
-                    <a href="post.html">
-                        Sample Post
-                    </a>
-                </li>
-                <li>
-                    <a href="contact.html">Contact</a>
-                </li>
-            </ul>
+                <NavbarMenuItems navbarItems={this.props.navbarItems}/>
         </div>
       </div >
     );
@@ -62,7 +69,7 @@ class NavBar extends Component {
           <div className="container-fluid">
 
               <NavbarBrand brand={this.props.brand} />
-              <NavbarMenu />
+              <NavbarMenu navbarItems={this.props.navbarItems}/>
           </div>
 
         </nav>
